@@ -9,7 +9,7 @@ export async function getServerSideProps() {
     return { props: { payload: "null" } }
 }
 
-export default function Index() {
+export default function Payroll() {
     const collapseItems = [
         "Profile",
         "Dashboard",
@@ -47,11 +47,11 @@ export default function Index() {
                         hideIn="xs"
                     >
                         <Navbar.Link isDisabled href="#">Logistics</Navbar.Link>
-                        <Navbar.Link isActive href="../">
+                        <Navbar.Link href="../">
                             Production
                         </Navbar.Link>
                         <Navbar.Link href="#">Employees</Navbar.Link>
-                        <Navbar.Link href="../payroll">Payroll</Navbar.Link>
+                        <Navbar.Link isActive href="../payroll">Payroll</Navbar.Link>
                     </Navbar.Content>
                     <Navbar.Content
                         css={{
@@ -132,105 +132,38 @@ export default function Index() {
 
 const ProductionData = ({ }) => (
     <Container>
-
-        <Col css={{mb: "2rem"}}>
-            <Text b color="$gray600" css={{}}>Last updated: 10 minutes ago.</Text>
-            <Text
-                h1
-                size={30}
-            >
-                Production
-            </Text>
+        <Col>
+            <Text b size={16}>Choose payroll provider:</Text>
         </Col>
-
-
-        <Row justify="space-between" wrap="wrap">
-            <Stat value={54} label={"WIDGETS PRODUCED (DAY)"} />
-            <Stat value={128} label={"WIDGETS PRODUCED (WEEK)"} />
-            <Stat value={3} color="error" label={"REJECTED WIDGETS"} />
-            <Stat value={0} color="warning" label={"WARNINGS"} />
-        </Row>
-
-
-        <Spacer y={3} />
-        
-        <Table
-            aria-label="Example table with static content"
-            css={{
-                height: "auto",
-                minWidth: "100%",
-            }}
-        >
-            <Table.Header>
-                <Table.Column>CLIENT</Table.Column>
-                <Table.Column>ORDER NUMBER</Table.Column>
-                <Table.Column>STATUS</Table.Column>
-            </Table.Header>
-            <Table.Body>
-                <Table.Row key="1">
-                    <Table.Cell>Company</Table.Cell>
-                    <Table.Cell>{Math.random() * 1000000}</Table.Cell>
-                    <Table.Cell><Text b color="success">COMPLETE</Text></Table.Cell>
-                </Table.Row>
-                <Table.Row key="2">
-                    <Table.Cell>Company</Table.Cell>
-                    <Table.Cell>{Math.random() * 1000000}</Table.Cell>
-                    <Table.Cell><Text b color="warning">IN PROGRESS</Text></Table.Cell>
-                </Table.Row>
-                <Table.Row key="3">
-                    <Table.Cell>Company</Table.Cell>
-                    <Table.Cell>{Math.random() * 1000000}</Table.Cell>
-                    <Table.Cell><Text b color="warning">IN PROGRESS</Text></Table.Cell>
-                </Table.Row>
-                <Table.Row key="4">
-                    <Table.Cell>Company</Table.Cell>
-                    <Table.Cell>{Math.random() * 1000000}</Table.Cell>
-                    <Table.Cell><Text b color="error">BEHIND SCHEDULE</Text></Table.Cell>
-                </Table.Row>
-            </Table.Body>
-        </Table>
-        <Spacer y={3} />
-        <Card>
-            <Card.Body css={{ p: "2rem" }}>
-                <Text b size={16}>Update Order</Text>
-                <Spacer y={1} />
-                <Grid.Container>
-                    <Grid>
-                        <Input
-                            bordered
-                            labelPlaceholder="Work Number"
-                            color="default" />
-                    </Grid>
-                    <Spacer x={1} />
-                    <Grid>
-                        <Input
-                            bordered
-                            labelPlaceholder="Data"
-                            color="default" />
-                    </Grid>
-                    <Spacer x={1} />
-                    <Grid>
-                        <Input
-                            bordered
-                            labelPlaceholder="Data"
-                            color="default" />
-                    </Grid>
-                    <Spacer x={1} />
-                    <Grid>
-                        <Input
-                            bordered
-                            labelPlaceholder="Data"
-                            color="default" />
-                    </Grid>
-                </Grid.Container>
-            </Card.Body>
-        </Card>
-        <Spacer y={3} />
-        <Row justify="space-evenly" wrap="wrap">
-            <MiniStat value={34672} label={"PRODUCED (ALL TIME)"} />
-            <MiniStat value={"123 Plant"} label={"PLANT"} />
-            <MiniStat value={"2000"} color="error" label={"REJECT WIDGETS (ALL TIME)"} />
-            <MiniStat value={10} label={"WORKERS"} />
-        </Row>
+        <Grid.Container gap={2} justify="left">
+            <Grid xs={5} sm={3}>
+                <Provider name="INTERGRATE" title="Quickbooks" imgSource={"https://quickbooks.intuit.com/cas/dam/IMAGE/A6OWCozsM/qb_thumb.png"} />
+            </Grid>
+            <Grid xs={5} sm={3}>
+                <Provider name="INTERGRATE" title="Paychex" imgSource={"https://play-lh.googleusercontent.com/VpIfES8tvIMWUSpOKnNGGzJB4TlWpJstrQNkkH4cdkuamR5U3IjzdjK0JUv7gh66E5k"} />
+            </Grid>
+            <Grid xs={5} sm={3}>
+                <Provider name="INTERGRATE" title="Onpay" imgSource={"https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/https://onpay.com/wp-content/uploads/2022/03/onpay-stacked-new-2021-300x300-01.png"} />
+            </Grid>
+        </Grid.Container>
     </Container>
+)
+
+const Provider = ({ imgSource,title, name }) => (
+    <Card  isPressable>
+        <Card.Header css={{  position: "absolute", zIndex: 1, top: 5 }}>
+            <Col>
+                <Text h4 color="white">
+                  {title}
+                </Text>
+            </Col>
+        </Card.Header>
+        <Card.Image
+            src={imgSource}
+            objectFit="contain"
+            width="100px"
+            height={200}
+            alt="Card image background"
+        />
+    </Card>
 )
