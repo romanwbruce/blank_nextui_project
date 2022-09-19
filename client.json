@@ -1,0 +1,11 @@
+{
+    "customer_name": "name",
+    "contact": "ex@example.com",
+    "databases": [
+        {"production_data": "Server=ex.server.com;user=ex;pass=3214"}
+    ],
+    "quickbooks":{
+        "api_key": "2903482309432423",
+        "client": "ex-quickbooks-client"
+    }
+}
