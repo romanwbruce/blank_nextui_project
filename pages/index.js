@@ -25,7 +25,7 @@ export default function Index() {
                         }}
                         weight="bold"
                     >
-                        Hello, I'm Roman.
+                        Hello, I&apos;m Roman.
                     </Text>
                     <Text b size={16} color="white">A software engineer from Greenville, South Carolina.</Text>
 
